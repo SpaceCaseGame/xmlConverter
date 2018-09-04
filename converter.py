@@ -5,6 +5,7 @@
 
 from lxml import etree
 import csv
+import sys
 
 
 def readCsv(inFile):
@@ -55,5 +56,10 @@ def genXml(outFile, inData):
     xml_file.close()
     print('Wrote '+str(line_count)+' lines.')
 
-cardData = readCsv("cards.csv")
-genXml("output.xml", cardData)
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Incorrect number of arguments!")
+        sys.exit(1)
+    inFile = sys.argv[1]
+    cardData = readCsv(inFile)
+    genXml("output.xml", cardData)
