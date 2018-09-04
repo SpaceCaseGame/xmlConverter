@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+#john@netpurgatory.com
+#09/03/2018
+
 from lxml import etree
 import csv
 
@@ -25,11 +28,8 @@ def genXml(outFile, inData):
     for cData in inData:
         print cData["Name"]
         card = etree.SubElement(cards, "card")
-        #card.text = "HI"
         etree.SubElement(card, "name").text = cData["Name"]
-        #child3 = etree.SubElement(cards, "child3", atag="2").text = "Something else"
-    #card2 = etree.SubElement(cards, "card")
-    #card2.text = "HIHI"
+        etree.SubElement(card, "type").text = cData["Card Type"]
 
     # <card>
     #     <name></name>
