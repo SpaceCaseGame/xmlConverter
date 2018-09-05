@@ -39,11 +39,13 @@ def genXml(outFile, inData):
         etree.SubElement(card, "manacost").text = cData["Cost"]
         # <cmc></cmc> Ignore
         etree.SubElement(card, "type").text = cData["Card Type"]
-        etree.SubElement(card, "pt").text = cData["Strength"]+cData["Durability"]
+        etree.SubElement(card,
+                         "pt").text = cData["Strength"]+cData["Durability"]
         # <loyalty></loyalty> Ignore
         # etree.SubElement(card, "tablerow").text = cData["Gear"]
         etree.SubElement(card, "text").text = cData["Intrinsic"]
-        etree.SubElement(card, "token").text = cData["Exotic"]+cData["ELE Support"]
+        etree.SubElement(card,
+                         "token").text = cData["Exotic"]+cData["ELE Support"]
         # <cipt></cipt> Ignore
 
     res = etree.tostring(root, pretty_print=True)

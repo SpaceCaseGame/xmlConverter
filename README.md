@@ -14,7 +14,7 @@ perl -pi -e 's/•/*/g' Cards\ CSV.csv
 
 Then run the code:
 ```
-./converter.py cards.csv
+./converter.py Cards\ CSV.csv
 ```
 
 ## License
