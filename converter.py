@@ -30,25 +30,21 @@ def genXml(outFile, inData):
     line_count = 0
     for cData in inData:
         line_count += 1
+        # print(cData["Name"])
         card = etree.SubElement(cards, "card")
         etree.SubElement(card, "name").text = cData["Name"]
+        # <set picURL=""></set> Ignore
+        etree.SubElement(card, "related").text = cData["Hosted Skills"]
+        etree.SubElement(card, "color").text = cData["Class"]
+        etree.SubElement(card, "manacost").text = cData["Cost"]
+        # <cmc></cmc> Ignore
         etree.SubElement(card, "type").text = cData["Card Type"]
-
-    # <card>
-    #     <name></name>
-    #     <set picURL=""></set>
-    #     <related></related>
-    #     <color></color>
-    #     <manacost></manacost>
-    #     <cmc></cmc>
-    #     <type></type>
-    #     <pt></pt>
-    #     <loyalty></loyalty>
-    #     <tablerow></tablerow>
-    #     <text></text>
-    #     <token></token>
-    #     <cipt></cipt>
-    # </card>
+        etree.SubElement(card, "pt").text = cData["Strength"]+cData["Durability"]
+        # <loyalty></loyalty> Ignore
+        # etree.SubElement(card, "tablerow").text = cData["Gear"]
+        etree.SubElement(card, "text").text = cData["Intrinsic"]
+        etree.SubElement(card, "token").text = cData["Exotic"]+cData["ELE Support"]
+        # <cipt></cipt> Ignore
 
     res = etree.tostring(root, pretty_print=True)
     xml_file = open(outFile, "w")

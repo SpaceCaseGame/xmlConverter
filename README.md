@@ -9,6 +9,7 @@ This expects a csv file as input which is specified on the command line.  The fi
 ```
 perl -pi -e 's/Æ/AE/g' cards.csv
 perl -pi -e 's/æ/ae/g' cards.csv
+perl -pi -e 's/•/*/g' cards.csv
 ```
 
 Then run the code:
