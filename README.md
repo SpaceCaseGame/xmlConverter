@@ -7,9 +7,9 @@ Simple tool to convert to Cockatrice format xml.
 This expects a csv file as input which is specified on the command line.  The file must not contain any special characters.  You may remove thos with:
 
 ```
-perl -pi -e 's/Æ/AE/g' cards.csv
-perl -pi -e 's/æ/ae/g' cards.csv
-perl -pi -e 's/•/*/g' cards.csv
+perl -pi -e 's/Æ/AE/g' Cards\ CSV.csv
+perl -pi -e 's/æ/ae/g' Cards\ CSV.csv
+perl -pi -e 's/•/*/g' Cards\ CSV.csv
 ```
 
 Then run the code:
