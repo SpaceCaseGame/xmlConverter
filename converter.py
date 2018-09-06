@@ -42,10 +42,20 @@ def genXml(outFile, inData):
         etree.SubElement(card,
                          "pt").text = cData["Strength"]+cData["Durability"]
         # <loyalty></loyalty> Ignore
-        # etree.SubElement(card, "tablerow").text = cData["Gear"]
+        tableRow = ""
+        if cData["Card Type"] == "Gear":
+            if cData["Subtypes(s)"] == "Armor":
+                tableRow = 0
+            if cData["Subtypes(s)"] == "Weapons":
+                tableRow = 2
+        if cData["Card Type"] == "AEon":
+            tableRow = 1
+        if cData["Card Type"] == "Talent":
+            tableRow = 3
+        etree.SubElement(card, "tablerow").text = tableRow
         etree.SubElement(card, "text").text = cData["Intrinsic"]
-        etree.SubElement(card,
-                         "token").text = cData["Exotic"]+cData["ELE Support"]
+        # etree.SubElement(card,
+        #                 "token").text = cData["Exotic"]+cData["ELE Support"]
         # <cipt></cipt> Ignore
 
     res = etree.tostring(root, pretty_print=True)
