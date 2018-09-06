@@ -23,12 +23,12 @@ def readCsv(inFile):
     return(cardData)
 
 
-def genXml(outFile, inData):
+def genXml(outFile, cardData, skillData):
     root = etree.Element("cockatrice_carddatabase", version="3")
     cards = etree.SubElement(root, "cards")
 
     line_count = 0
-    for cData in inData:
+    for cData in cardData:
         line_count += 1
         # print(cData["Name"])
         card = etree.SubElement(cards, "card")
@@ -57,7 +57,8 @@ def genXml(outFile, inData):
         # etree.SubElement(card,
         #                 "token").text = cData["Exotic"]+cData["ELE Support"]
         # <cipt></cipt> Ignore
-
+    for cData in skillData:
+        line_count += 1
     res = etree.tostring(root, pretty_print=True)
     xml_file = open(outFile, "w")
     xml_file.write(res)
@@ -65,9 +66,11 @@ def genXml(outFile, inData):
     print('Wrote '+str(line_count)+' lines.')
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 3:
         print("Incorrect number of arguments!")
         sys.exit(1)
-    inFile = sys.argv[1]
-    cardData = readCsv(inFile)
+    cardFile = sys.argv[1]
+    cardData = readCsv(cardFile)
+    skillFile = sys.argv[2]
+    skillData = readCsv(skillFile)
     genXml("output.xml", cardData)
